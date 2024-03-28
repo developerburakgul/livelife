@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:livelife/addHabit.dart';
 import 'package:livelife/homePage.dart';
+import 'package:livelife/settings.dart';
 import 'package:livelife/timer.dart';
 
 void main() {
@@ -13,15 +15,38 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      debugShowCheckedModeBanner: false,
-      home:HomePage()
-    );
+        title: 'Live Life',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: SettingsPage());
   }
 }
 
+class bottomNavigationBar extends StatelessWidget {
+  const bottomNavigationBar({
+    super.key,
+  });
 
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.timer),
+          label: 'Zamanlayıcı',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Ana Ekran',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.settings),
+          label: 'Ayarlar',
+        ),
+      ],
+    );
+  }
+}

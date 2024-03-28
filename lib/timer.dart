@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:livelife/main.dart';
 
 class TimerScreen extends StatefulWidget {
   @override
@@ -76,22 +77,7 @@ class _TimerScreenState extends State<TimerScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.timer),
-            label: 'Timer',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.play_arrow),
-            label: 'Start',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-      ),
+      bottomNavigationBar: bottomNavigationBar()
     );
   }
 }
