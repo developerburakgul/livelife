@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:livelife/addHabit.dart';
 import 'package:livelife/homePage.dart';
+import 'package:livelife/intro.dart';
+import 'package:livelife/login.dart';
 import 'package:livelife/settings.dart';
+import 'package:livelife/singUp.dart';
 import 'package:livelife/timer.dart';
 
 void main() {
@@ -21,7 +24,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
-        home: SettingsPage());
+        home: IntroScreen());
   }
 }
 
