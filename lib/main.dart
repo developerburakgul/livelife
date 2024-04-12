@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:livelife/addHabit.dart';
-import 'package:livelife/homePage.dart';
-import 'package:livelife/intro.dart';
-import 'package:livelife/login.dart';
-import 'package:livelife/settings.dart';
-import 'package:livelife/singUp.dart';
-import 'package:livelife/timer.dart';
+import 'package:livelife/Screens/addHabit.dart';
+import 'package:livelife/Screens/homePage.dart';
+import 'package:livelife/Screens/intro.dart';
+import 'package:livelife/Screens/login.dart';
+import 'package:livelife/Screens/settings.dart';
+import 'package:livelife/Screens/signUP.dart';
+import 'package:livelife/Screens/timer.dart';
 
 void main() {
   runApp(const MyApp());
