@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-
+import 'package:livelife/Screens/signUP.dart';
 
 class IntroScreen extends StatefulWidget {
   @override
@@ -30,7 +29,8 @@ class _IntroScreenState extends State<IntroScreen> {
     // Diğer sayfalarınızı buraya ekleyin
   ];
 
-  static Widget _buildPage({String? title, String? description, ImageProvider? image}) {
+  static Widget _buildPage(
+      {String? title, String? description, ImageProvider? image}) {
     return Container(
       padding: EdgeInsets.all(24),
       child: Column(
@@ -38,9 +38,11 @@ class _IntroScreenState extends State<IntroScreen> {
         children: [
           // Image(image: image), // Görseli eklemek için bu satırı kullanın
           SizedBox(height: 20),
-          Text(title!, style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+          Text(title!,
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
           SizedBox(height: 20),
-          Text(description!, textAlign: TextAlign.center, style: TextStyle(fontSize: 18)),
+          Text(description!,
+              textAlign: TextAlign.center, style: TextStyle(fontSize: 18)),
         ],
       ),
     );
@@ -99,6 +101,10 @@ class _IntroScreenState extends State<IntroScreen> {
         child: Text('Başlayın'),
         onPressed: () {
           // Anasayfa veya uygulamanın bir sonraki ekranına yönlendir
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => SignUpPage()),
+          );
         },
       ),
     );

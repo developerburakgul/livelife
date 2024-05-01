@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:livelife/Screens/signUP.dart';
+
 import 'package:livelife/main.dart';
 
 class SettingsPage extends StatefulWidget {
+  SettingsPage(){
+    print('SettingsPage constructor called');
+  }
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
@@ -128,10 +133,14 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // Add your onPressed logic here
+             Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => SignUpPage()),
+            );
           },
           child: Icon(Icons.logout),
-        ),
-        bottomNavigationBar: bottomNavigationBar());
+        )
+        // bottomNavigationBar: bottomNavigationBar()
+        );
   }
 }

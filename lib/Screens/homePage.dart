@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:livelife/Models/task.dart';
+import 'package:livelife/Screens/addHabit.dart';
 import 'package:livelife/main.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class HomePage extends StatefulWidget {
+  final String userId;
+
+  HomePage({Key? key, required this.userId}) : super(key: key) {
+    print('HomePage constructor called ');
+  }
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -11,6 +19,15 @@ class _HomePageState extends State<HomePage> {
   CalendarFormat _calendarFormat = CalendarFormat.week;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
+
+  List<Task>? tasks;
+
+  @override
+  void initState() {
+    print("Homepage init state çalıştı");
+    super.initState();
+    getTaskData(); // Verileri yüklemek için
+  }
 
   void _toggleCalendarView() {
     setState(() {
@@ -35,10 +52,7 @@ class _HomePageState extends State<HomePage> {
               focusedDay: _focusedDay,
               calendarFormat: _calendarFormat,
               onDaySelected: (selectedDay, focusedDay) {
-                setState(() {
-                  _selectedDay = selectedDay;
-                  _focusedDay = focusedDay;
-                });
+                _onDaySelected(selectedDay, focusedDay);
               },
               onPageChanged: (focusedDay) {
                 _focusedDay = focusedDay;
@@ -64,39 +78,55 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             // Task List
-            TaskCard(title: 'Task 1', progress: 0.3),
-            TaskCard(title: 'Task 2', progress: 0.7),
-            TaskCard(title: 'Task 3', progress: 0.5),
+            if (tasks != null)
+              for (Task task in tasks!) TaskCard(title: task.name),
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // Add your onPressed code here!
+          onPressed: () async {
+            final result = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => HabitCreatePage(userId: widget.userId)),
+            );
+            if (result == true) {
+              print("result: $result");
+              getTaskData();
+            }
           },
           child: Icon(Icons.add),
           backgroundColor: Colors.blue,
-        ),
-        bottomNavigationBar: bottomNavigationBar());
+        )
+        // bottomNavigationBar: bottomNavigationBar()
+        );
+  }
+
+  void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
+    setState(() {
+      _selectedDay = selectedDay;
+      _focusedDay = focusedDay;
+    });
+  }
+
+  void getTaskData() async {
+    print("getTaskData başladı");
+    // ! in here must be backend logic
   }
 }
 
 class TaskCard extends StatelessWidget {
   final String title;
-  final double progress;
 
-  const TaskCard({Key? key, required this.title, required this.progress})
-      : super(key: key);
+  const TaskCard({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(8),
-      child: ListTile(
-        title: Text(title),
-        subtitle: LinearProgressIndicator(
-          value: progress,
-        ),
-      ),
+      child: ListTile(title: Text(title)),
     );
   }
 }
+
+
+

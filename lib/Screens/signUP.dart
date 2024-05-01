@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:livelife/Models/gender.dart';
+import 'package:livelife/Models/user_model.dart';
+import 'package:livelife/Screens/MyHomePage.dart';
+import 'package:livelife/Screens/homePage.dart';
+import 'package:livelife/Screens/login.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -10,16 +16,9 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
-  String _gender = 'Erkek'; // Varsayılan cinsiyet
+  Gender _gender = Gender.male; // Varsayılan cinsiyet
 
-  void _signUp() {
-    print('Kullanıcı adı: ${_usernameController.text}');
-    print('E-Mail: ${_emailController.text}');
-    print('Şifre: ${_passwordController.text}');
-    print('Cinsiyet: $_gender');
-    print('Yaş: ${_ageController.text}');
-    // Kayıt işlemleri burada yapılır
-  }
+  // SignUpPage içindeki _signUP fonksiyonu
 
   @override
   Widget build(BuildContext context) {
@@ -62,20 +61,20 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
             SizedBox(height: 16.0),
             DropdownButtonFormField(
-              value: _gender,
+              value: _gender.name,
               decoration: InputDecoration(
                 labelText: 'Cinsiyet',
                 border: OutlineInputBorder(),
               ),
-              items: ['Erkek', 'Kadın', 'Diğer'].map((String value) {
+              items: Gender.values.map((gender) {
                 return DropdownMenuItem(
-                  value: value,
-                  child: new Text(value),
+                  value: gender.name,
+                  child: Text(gender.turkishName),
                 );
               }).toList(),
               onChanged: (String? newValue) {
                 setState(() {
-                  _gender = newValue!;
+                  _gender = GenderExtension.fromString(newValue!);
                 });
               },
             ),
@@ -91,31 +90,28 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(height: 24.0),
             ElevatedButton(
               child: Text('Kayıt Ol'),
-              onPressed: _signUp,
+              onPressed: _signUP,
             ),
             TextButton(
               child: Text('Zaten hesabım var'),
-              onPressed: () {},
+              onPressed: _goToLoginPage,
             ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.timer),
-            label: 'Zamanlayıcı',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Ana Ekran',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Ayarlar',
-          ),
-        ],
-      ),
+    );
+  }
+
+  void _goToLoginPage() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => LoginPage()));
+  }
+
+  void _signUP() async {
+    // ! in here must be signUP logic and depend on this result there must be route to the home page
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => MyHomePage(userId: "123")),
     );
   }
 }

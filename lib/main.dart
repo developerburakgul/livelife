@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:livelife/Screens/addHabit.dart';
 import 'package:livelife/Screens/homePage.dart';
@@ -7,9 +8,12 @@ import 'package:livelife/Screens/settings.dart';
 import 'package:livelife/Screens/signUP.dart';
 import 'package:livelife/Screens/timer.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); 
+  await Firebase.initializeApp(); // Firebase başlatılıyor
+  runApp(MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -28,28 +32,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class bottomNavigationBar extends StatelessWidget {
-  const bottomNavigationBar({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.timer),
-          label: 'Zamanlayıcı',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Ana Ekran',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: 'Ayarlar',
-        ),
-      ],
-    );
-  }
-}
+
+

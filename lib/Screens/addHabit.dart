@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:livelife/Models/task.dart';
+import 'package:livelife/Screens/MyHomePage.dart';
+import 'package:livelife/Screens/homePage.dart';
 import 'package:livelife/main.dart';
 
 class HabitCreatePage extends StatefulWidget {
+  final String userId;
+
+  HabitCreatePage({Key? key, required this.userId}) : super(key: key) {
+    print('HabitCreatePage constructor called $userId');
+  }
+
   @override
   _HabitCreatePageState createState() => _HabitCreatePageState();
 }
@@ -92,7 +101,11 @@ class _HabitCreatePageState extends State<HabitCreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: Icon(Icons.arrow_back),
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                _goBackHomePage(context);
+              }),
           title: Text('Yeni Alışkanlık Oluştur'),
         ),
         body: Padding(
@@ -140,7 +153,14 @@ class _HabitCreatePageState extends State<HabitCreatePage> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      // Oluşturma işlevselliği ekle
+                      // Alışkanlığı oluştur
+                      _saveHabit(
+                          startDay: _startDate,
+                          endDay: _endDate,
+                          reminderTime: _reminderTime,
+                          name: _nameController.text,
+                          description: 'Açıklama');
+                      Navigator.pop(context, true);
                     },
                     child: Text('Oluştur'),
                     style: ElevatedButton.styleFrom(),
@@ -149,7 +169,22 @@ class _HabitCreatePageState extends State<HabitCreatePage> {
               ),
             ],
           ),
-        ),
-        bottomNavigationBar: bottomNavigationBar());
+        )
+        // bottomNavigationBar: bottomNavigationBar()
+        );
+  }
+
+  Future<void> _saveHabit(
+      {required startDay,
+      required DateTime endDay,
+      required TimeOfDay reminderTime,
+      required String name,
+      required String description}) async {
+    // ! in here must be backend logic
+  }
+
+  void _goBackHomePage(BuildContext context) {
+    print("go gome back");
+    Navigator.pop(context, true);
   }
 }

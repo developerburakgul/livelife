@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:livelife/Models/user_model.dart';
+import 'package:livelife/Screens/MyHomePage.dart';
+import 'package:livelife/Screens/homePage.dart';
+import 'package:livelife/Screens/signUP.dart';
 import 'package:livelife/main.dart';
 
 class LoginPage extends StatefulWidget {
@@ -7,22 +11,34 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void _login() {
+  Future<void> _login() async {
     // Giriş işlemlerini burada gerçekleştir
     // Örnek olarak kullanıcı adı ve şifreyi yazdır
-    print('Kullanıcı adı: ${_usernameController.text}');
-    print('Şifre: ${_passwordController.text}');
+    Navigator.pop(context);
+
+    // ! in here must be login logic and depend on the result navigate to the home page
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+          builder: (context) => MyHomePage(
+                userId: "123", //! "123" is example not real data
+              )),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('Giriş Yap')),
-      ),
+          title: Center(child: Text('Giriş Yap')),
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                _goToBackSignUPPage(context);
+              })),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -30,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             TextField(
-              controller: _usernameController,
+              controller: _emailController,
               decoration: InputDecoration(
                 labelText: 'E-Mail',
                 border: OutlineInputBorder(),
@@ -55,11 +71,17 @@ class _LoginPageState extends State<LoginPage> {
               child: Text('Şifremi Unuttum'),
               onPressed: () {},
             ),
-            
           ],
         ),
       ),
-      bottomNavigationBar: bottomNavigationBar(),
     );
+  }
+
+  void _goToBackSignUPPage(BuildContext context) {
+    // Navigator.pushReplacement(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => SignUpPage()),
+    // );
+    Navigator.pop(context);
   }
 }
