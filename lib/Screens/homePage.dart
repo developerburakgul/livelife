@@ -51,6 +51,9 @@ class _HomePageState extends State<HomePage> {
               lastDay: DateTime.utc(2040, 1, 1),
               focusedDay: _focusedDay,
               calendarFormat: _calendarFormat,
+              selectedDayPredicate: (day) {
+                return isSameDay(_selectedDay, day);
+              },
               onDaySelected: (selectedDay, focusedDay) {
                 _onDaySelected(selectedDay, focusedDay);
               },
@@ -60,16 +63,25 @@ class _HomePageState extends State<HomePage> {
               daysOfWeekStyle: DaysOfWeekStyle(
                 weekendStyle: TextStyle().copyWith(color: Colors.blue[600]),
               ),
+              headerStyle: const HeaderStyle(
+                titleCentered: true,
+                formatButtonVisible: false,
+                // Bu özellik format düğmelerini kaldırır
+              ),
               // Your other calendar styling
             ),
+
             IconButton(
               icon: Icon(
-                Icons.expand_more,
+                _calendarFormat == CalendarFormat.week
+                    ? Icons.expand_more
+                    : Icons.expand_less,
                 size: 25,
                 color: Color.fromARGB(255, 58, 58, 58),
               ),
-              onPressed: _toggleCalendarView, // Here's your onPress function
+              onPressed: _toggleCalendarView,
             ),
+
             // Motivational quote section
             Card(
               child: Padding(
@@ -96,9 +108,7 @@ class _HomePageState extends State<HomePage> {
           },
           child: Icon(Icons.add),
           backgroundColor: Colors.blue,
-        )
-        // bottomNavigationBar: bottomNavigationBar()
-        );
+        ));
   }
 
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
@@ -117,7 +127,10 @@ class _HomePageState extends State<HomePage> {
 class TaskCard extends StatelessWidget {
   final String title;
 
-  const TaskCard({Key? key, required this.title}) : super(key: key);
+  const TaskCard({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -127,6 +140,3 @@ class TaskCard extends StatelessWidget {
     );
   }
 }
-
-
-

@@ -33,12 +33,13 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Center(child: Text('Giriş Yap')),
-          leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                _goToBackSignUPPage(context);
-              })),
+        leading: IconButton(
+            icon: Icon(Icons.home),
+            onPressed: () {
+              _goToBackSignUPPage(context);
+            }),
+        title: Center(child: Text('Giriş Yap')),
+      ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(

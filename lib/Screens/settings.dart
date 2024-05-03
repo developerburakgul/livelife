@@ -4,7 +4,7 @@ import 'package:livelife/Screens/signUP.dart';
 import 'package:livelife/main.dart';
 
 class SettingsPage extends StatefulWidget {
-  SettingsPage(){
+  SettingsPage() {
     print('SettingsPage constructor called');
   }
   @override
@@ -54,18 +54,11 @@ class _SettingsPageState extends State<SettingsPage> {
                     decoration: InputDecoration(
                       labelText: 'Kullanıcı Adı',
                     ),
+                    readOnly: true,
+                    enabled: false,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(6.0),
-                  child: TextFormField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: 'Şifre',
-                    ),
-                  ),
-                ),
+
                 Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: TextFormField(
@@ -73,6 +66,8 @@ class _SettingsPageState extends State<SettingsPage> {
                     decoration: InputDecoration(
                       labelText: 'Email',
                     ),
+                    readOnly: true,
+                    enabled: false,
                   ),
                 ),
                 Padding(
@@ -82,6 +77,8 @@ class _SettingsPageState extends State<SettingsPage> {
                     decoration: InputDecoration(
                       labelText: 'Cinsiyet',
                     ),
+                    readOnly: true,
+                    enabled: false,
                   ),
                 ),
                 Padding(
@@ -91,20 +88,12 @@ class _SettingsPageState extends State<SettingsPage> {
                     decoration: InputDecoration(
                       labelText: 'Yaş',
                     ),
+                    readOnly: true,
+                    enabled: false,
                     keyboardType: TextInputType.number,
                   ),
                 ),
-
-                // Kaydet butonu
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: ElevatedButton(
-                    child: Text('Kaydet'),
-                    onPressed: () {
-                      // Kaydetmek için gerekli işlemleri yapın
-                    },
-                  ),
-                ),
+                
               ],
             ),
             SwitchListTile(
@@ -133,7 +122,7 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-             Navigator.pushReplacement(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => SignUpPage()),
             );

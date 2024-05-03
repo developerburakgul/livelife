@@ -4,6 +4,7 @@ import 'package:livelife/Models/gender.dart';
 import 'package:livelife/Models/user_model.dart';
 import 'package:livelife/Screens/MyHomePage.dart';
 import 'package:livelife/Screens/homePage.dart';
+import 'package:livelife/Screens/intro.dart';
 import 'package:livelife/Screens/login.dart';
 
 class SignUpPage extends StatefulWidget {
