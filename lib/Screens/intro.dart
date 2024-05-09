@@ -10,7 +10,6 @@ class _IntroScreenState extends State<IntroScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
   bool _showIntro = true; // varsayılan olarak intronun gösterilmesini sağlar
-
   @override
   void initState() {
     super.initState();

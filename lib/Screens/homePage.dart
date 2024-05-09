@@ -81,15 +81,13 @@ class _HomePageState extends State<HomePage> {
               ),
               onPressed: _toggleCalendarView,
             ),
-
-            // Motivational quote section
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Motivation Quote'),
-              ),
-            ),
-            // Task List
+            TaskCard(title: "Task 1"),
+            // ! Motivational quote section
+            // ! MotivationCard(
+            //  !  title: 'Motivation Quotes',
+            // !    quotes: [],
+            //!   ),
+            //! Task List
             if (tasks != null)
               for (Task task in tasks!) TaskCard(title: task.name),
           ],
@@ -124,19 +122,143 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class TaskCard extends StatelessWidget {
+class MotivationCard extends StatelessWidget {
   final String title;
+  final List<String> quotes;
+
+  const MotivationCard({Key? key, required this.title, required this.quotes})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                color: Colors.blue,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 8),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: quotes.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  child: Text(
+                    quotes[index],
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class TaskCard extends StatefulWidget {
+  final String title;
+  // final double progress;
+  final bool isChecked;
+  final ValueChanged<bool>? onChanged;
+  final VoidCallback? onEditPressed;
+  final VoidCallback? onDeletePressed;
 
   const TaskCard({
     Key? key,
     required this.title,
+    //required this.progress,
+    this.isChecked = false,
+    this.onChanged,
+    this.onEditPressed,
+    this.onDeletePressed,
   }) : super(key: key);
+
+  @override
+  _TaskCardState createState() => _TaskCardState();
+}
+
+class _TaskCardState extends State<TaskCard> {
+  bool _isChecked = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _isChecked = widget.isChecked;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(8),
-      child: ListTile(title: Text(title)),
+      child: ListTile(
+        leading: SizedBox(
+          width: 15,
+          height: 15,
+          child: Checkbox(
+            value: _isChecked,
+            onChanged: (value) {
+              setState(() {
+                _isChecked = value ?? false;
+                widget.onChanged?.call(_isChecked);
+              });
+            },
+          ),
+        ),
+        title: Text(widget.title),
+        // subtitle: LinearProgressIndicator(
+        //   value: widget.progress,
+        // ),
+        trailing: PopupMenuButton(
+          shape: ShapeBorder.lerp(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            1,
+          ),
+          itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+            PopupMenuItem(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    left: 1.0, right: 1.0, bottom: 1.0, top: 1.0),
+                child: ListTile(
+                  leading: Icon(Icons.edit),
+                  title: Text('Edit'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    widget.onEditPressed?.call();
+                  },
+                ),
+              ),
+            ),
+            PopupMenuItem(
+              child: ListTile(
+                leading: Icon(Icons.delete),
+                title: Text('Delete'),
+                onTap: () {
+                  Navigator.pop(context);
+                  widget.onDeletePressed?.call();
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
