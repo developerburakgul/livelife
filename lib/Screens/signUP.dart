@@ -27,77 +27,85 @@ class _SignUpPageState extends State<SignUpPage> {
       appBar: AppBar(
         title: Center(child: Text('Kayıt Ol')),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            SizedBox(
-              height: 10,
-            ),
-            TextField(
-              controller: _usernameController,
-              decoration: InputDecoration(
-                labelText: 'Kullanıcı Adı',
-                border: OutlineInputBorder(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              SizedBox(
+                height: 10,
               ),
-            ),
-            SizedBox(height: 16.0),
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(
-                labelText: 'E-Mail',
-                border: OutlineInputBorder(),
+              TextField(
+                maxLength: 50,
+                controller: _usernameController,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.person_pin),
+                  labelText: 'Kullanıcı Adı',
+                  border: OutlineInputBorder(),
+                ),
               ),
-              keyboardType: TextInputType.emailAddress,
-            ),
-            SizedBox(height: 16.0),
-            TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(
-                labelText: 'Şifre',
-                border: OutlineInputBorder(),
+              SizedBox(height: 16.0),
+              TextField(
+                controller: _emailController,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.email),
+                  labelText: 'E-Mail',
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.emailAddress,
               ),
-              obscureText: true,
-            ),
-            SizedBox(height: 16.0),
-            DropdownButtonFormField(
-              value: _gender.name,
-              decoration: InputDecoration(
-                labelText: 'Cinsiyet',
-                border: OutlineInputBorder(),
+              SizedBox(height: 16.0),
+              TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.lock),
+                  labelText: 'Şifre',
+                  border: OutlineInputBorder(),
+                ),
+                obscureText: true,
               ),
-              items: Gender.values.map((gender) {
-                return DropdownMenuItem(
-                  value: gender.name,
-                  child: Text(gender.turkishName),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                setState(() {
-                  _gender = GenderExtension.fromString(newValue!);
-                });
-              },
-            ),
-            SizedBox(height: 16.0),
-            TextField(
-              controller: _ageController,
-              decoration: InputDecoration(
-                labelText: 'Yaş',
-                border: OutlineInputBorder(),
+              SizedBox(height: 16.0),
+              DropdownButtonFormField(
+                value: _gender.name,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.male),
+                  labelText: 'Cinsiyet',
+                  border: OutlineInputBorder(),
+                ),
+                items: Gender.values.map((gender) {
+                  return DropdownMenuItem(
+                    value: gender.name,
+                    child: Text(gender.turkishName),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _gender = GenderExtension.fromString(newValue!);
+                  });
+                },
               ),
-              keyboardType: TextInputType.number,
-            ),
-            SizedBox(height: 24.0),
-            ElevatedButton(
-              child: Text('Kayıt Ol'),
-              onPressed: _signUP,
-            ),
-            TextButton(
-              child: Text('Zaten hesabım var'),
-              onPressed: _goToLoginPage,
-            ),
-          ],
+              SizedBox(height: 16.0),
+              TextField(
+                controller: _ageController,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.event),
+                  labelText: 'Yaş',
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: 24.0),
+              ElevatedButton(
+                child: Text('Kayıt Ol'),
+                onPressed: _signUP,
+              ),
+              TextButton(
+                child: Text('Zaten hesabım var'),
+                onPressed: _goToLoginPage,
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -34,11 +34,12 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.chevron_left),
             onPressed: () {
               _goToBackSignUPPage(context);
             }),
         title: Center(child: Text('Giriş Yap')),
+        actions: [Text("            ")],
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -49,6 +50,7 @@ class _LoginPageState extends State<LoginPage> {
             TextField(
               controller: _emailController,
               decoration: InputDecoration(
+                prefixIcon: Icon(Icons.mail),
                 labelText: 'E-Mail',
                 border: OutlineInputBorder(),
               ),
@@ -58,6 +60,7 @@ class _LoginPageState extends State<LoginPage> {
             TextField(
               controller: _passwordController,
               decoration: InputDecoration(
+                prefixIcon: Icon(Icons.lock),
                 labelText: 'Şifre',
                 border: OutlineInputBorder(),
               ),
@@ -67,10 +70,6 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton(
               child: Text('Giriş'),
               onPressed: _login,
-            ),
-            TextButton(
-              child: Text('Şifremi Unuttum'),
-              onPressed: () {},
             ),
           ],
         ),

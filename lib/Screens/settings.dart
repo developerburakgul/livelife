@@ -52,21 +52,24 @@ class _SettingsPageState extends State<SettingsPage> {
                   child: TextFormField(
                     controller: _usernameController,
                     decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.person_pin),
                       labelText: 'Kullanıcı Adı',
+                      hintText:
+                          _usernameController.text, // Kullanıcı adı gösterilir
                     ),
                     readOnly: true,
                     enabled: false,
                   ),
                 ),
-
                 Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: TextFormField(
                     controller: _emailController,
                     decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.email),
                       labelText: 'Email',
+                      hintText: _emailController.text, // Email gösterilir
                     ),
-                    readOnly: true,
                     enabled: false,
                   ),
                 ),
@@ -75,9 +78,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   child: TextFormField(
                     controller: _genderController,
                     decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.male),
                       labelText: 'Cinsiyet',
+                      hintText: _genderController.text, // Cinsiyet gösterilir
                     ),
-                    readOnly: true,
                     enabled: false,
                   ),
                 ),
@@ -87,13 +91,14 @@ class _SettingsPageState extends State<SettingsPage> {
                     controller: _ageController,
                     decoration: InputDecoration(
                       labelText: 'Yaş',
+                      prefixIcon: Icon(Icons.event),
+                      hintText: _ageController.text, // Yaş gösterilir
                     ),
                     readOnly: true,
                     enabled: false,
                     keyboardType: TextInputType.number,
                   ),
                 ),
-                
               ],
             ),
             SwitchListTile(
