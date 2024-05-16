@@ -37,7 +37,15 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 10,
               ),
               TextField(
-                maxLength: 50,
+                buildCounter: (BuildContext context,
+                    {int? currentLength, bool? isFocused, int? maxLength}) {
+                  return Container(
+                    height: 10,
+                    width: 10 * (currentLength!.toDouble()),
+                    color: Colors.amberAccent,
+                  );
+                },
+                maxLength: 33,
                 controller: _usernameController,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.person_pin),
