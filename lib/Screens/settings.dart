@@ -12,6 +12,9 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  
+
+
   bool isProfileExpanded = false;
   bool isSwitchedTheme = false;
   bool isSwitchedNotifications = false;
@@ -30,7 +33,6 @@ class _SettingsPageState extends State<SettingsPage> {
     _genderController.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +56,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.person_pin),
                       labelText: 'Kullanıcı Adı',
+                      border: OutlineInputBorder(),
                       hintText:
                           _usernameController.text, // Kullanıcı adı gösterilir
                     ),
@@ -67,6 +70,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     controller: _emailController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.email),
+                      border: OutlineInputBorder(),
                       labelText: 'Email',
                       hintText: _emailController.text, // Email gösterilir
                     ),
@@ -79,6 +83,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     controller: _genderController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.male),
+                      border: OutlineInputBorder(),
                       labelText: 'Cinsiyet',
                       hintText: _genderController.text, // Cinsiyet gösterilir
                     ),
@@ -90,6 +95,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   child: TextFormField(
                     controller: _ageController,
                     decoration: InputDecoration(
+                      border: OutlineInputBorder(),
                       labelText: 'Yaş',
                       prefixIcon: Icon(Icons.event),
                       hintText: _ageController.text, // Yaş gösterilir

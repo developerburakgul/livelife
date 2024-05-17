@@ -13,6 +13,10 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  FocusNode focusNodeTexFieldOne = FocusNode();
+  FocusNode focusNodeTexFieldTwo = FocusNode();
+  FocusNode focusNodeTexFieldThree = FocusNode();
+  FocusNode focusNodeTexFieldFour = FocusNode();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -37,14 +41,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 10,
               ),
               TextField(
-                buildCounter: (BuildContext context,
-                    {int? currentLength, bool? isFocused, int? maxLength}) {
-                  return Container(
-                    height: 10,
-                    width: 10 * (currentLength!.toDouble()),
-                    color: Colors.amberAccent,
-                  );
-                },
+                focusNode: focusNodeTexFieldOne,
+                textInputAction: TextInputAction.next,
                 maxLength: 33,
                 controller: _usernameController,
                 decoration: InputDecoration(
@@ -55,6 +53,8 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               SizedBox(height: 16.0),
               TextField(
+                focusNode: focusNodeTexFieldTwo,
+                textInputAction: TextInputAction.next,
                 controller: _emailController,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.email),
@@ -65,6 +65,8 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               SizedBox(height: 16.0),
               TextField(
+                focusNode: focusNodeTexFieldThree,
+                textInputAction: TextInputAction.next,
                 controller: _passwordController,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.lock),
@@ -72,6 +74,18 @@ class _SignUpPageState extends State<SignUpPage> {
                   border: OutlineInputBorder(),
                 ),
                 obscureText: true,
+              ),
+              SizedBox(height: 16.0),
+              TextField(
+                focusNode: focusNodeTexFieldFour,
+                textInputAction: TextInputAction.next,
+                controller: _ageController,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.event),
+                  labelText: 'Yaş',
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.number,
               ),
               SizedBox(height: 16.0),
               DropdownButtonFormField(
@@ -92,16 +106,6 @@ class _SignUpPageState extends State<SignUpPage> {
                     _gender = GenderExtension.fromString(newValue!);
                   });
                 },
-              ),
-              SizedBox(height: 16.0),
-              TextField(
-                controller: _ageController,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.event),
-                  labelText: 'Yaş',
-                  border: OutlineInputBorder(),
-                ),
-                keyboardType: TextInputType.number,
               ),
               SizedBox(height: 24.0),
               ElevatedButton(
