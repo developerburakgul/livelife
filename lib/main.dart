@@ -1,12 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:livelife/Screens/addHabit.dart';
-import 'package:livelife/Screens/homePage.dart';
-import 'package:livelife/Screens/intro.dart';
-import 'package:livelife/Screens/login.dart';
-import 'package:livelife/Screens/settings.dart';
-import 'package:livelife/Screens/signUP.dart';
-import 'package:livelife/Screens/timer.dart';
+import 'package:livelife/Controller/IntroViewController.dart';
+import 'package:livelife/Controller/SettingsViewController.dart';
+import 'package:livelife/Views/Screens/HabitCreateView.dart';
+import 'package:livelife/Views/Screens/HomeView.dart';
+import 'package:livelife/Views/Screens/IntroView.dart';
+import 'package:livelife/Views/Screens/LoginView.dart';
+import 'package:livelife/Views/Screens/SettingsView.dart';
+import 'package:livelife/Views/Screens/SignUPView.dart';
+import 'package:livelife/Views/Screens/TimerView.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); 
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
-        home: IntroScreen());
+        home: IntroViewController());
   }
 }
 
