@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:livelife/Controller/IntroViewController.dart';
-import 'package:livelife/Controller/LoginViewController.dart';
-import 'package:livelife/Controller/SignUPViewController.dart';
-import 'package:livelife/Views/Screens/SignUPView.dart';
-import 'package:livelife/Views/Screens/SettingsView.dart';
+import 'package:livelife/Views/Screens/SettingsView.dart'; // SettingsView dosyasının doğru path'ini yazın
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class SettingsViewController extends StatefulWidget {
   final String userId;
@@ -18,6 +16,7 @@ class _SettingsViewControllerState extends State<SettingsViewController> {
   bool isProfileExpanded = false;
   bool isSwitchedTheme = false;
   bool isSwitchedNotifications = false;
+  File? _profileImage;
 
   final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -52,10 +51,18 @@ class _SettingsViewControllerState extends State<SettingsViewController> {
   }
 
   void navigateToSignUp(BuildContext context) {
-    // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignUPViewController()));
-    // Navigator.of(context, rootNavigator: true).pushReplacement(
-    //     MaterialPageRoute(builder: (context) => LoginViewController()));
     Navigator.of(context, rootNavigator: true).pop();
+  }
+
+  Future<void> _pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile =
+        await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _profileImage = File(pickedFile.path);
+      });
+    }
   }
 
   @override
@@ -70,6 +77,8 @@ class _SettingsViewControllerState extends State<SettingsViewController> {
       onThemeChanged: toggleTheme,
       onNotificationsChanged: toggleNotifications,
       onLogoutPressed: () => navigateToSignUp(context),
+      onProfileImagePressed: _pickImage,
+      profileImage: _profileImage,
     );
   }
 }
