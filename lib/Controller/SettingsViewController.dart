@@ -55,13 +55,35 @@ class _SettingsViewControllerState extends State<SettingsViewController> {
   }
 
   Future<void> _pickImage() async {
-    final ImagePicker picker = ImagePicker();
-    final XFile? pickedFile =
-        await picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      setState(() {
-        _profileImage = File(pickedFile.path);
-      });
+    try {
+      final ImagePicker picker = ImagePicker();
+      final XFile? pickedFile =
+          await picker.pickImage(source: ImageSource.gallery);
+      if (pickedFile != null) {
+        setState(() {
+          _profileImage = File(pickedFile.path);
+        });
+      }
+    } catch (e) {
+      print("Image picker error: $e");
+      // iOS specific error handling
+      if (Platform.isIOS) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text("Hata"),
+            content: Text("Fotoğraf seçilirken bir hata oluştu: $e"),
+            actions: <Widget>[
+              TextButton(
+                child: Text("Tamam"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      }
     }
   }
 
@@ -82,3 +104,4 @@ class _SettingsViewControllerState extends State<SettingsViewController> {
     );
   }
 }
+
