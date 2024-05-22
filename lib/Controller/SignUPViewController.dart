@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:livelife/Controller/CustomPopupViewController.dart';
 import 'package:livelife/Controller/HomeViewController.dart';
 import 'package:livelife/Controller/LoginViewController.dart';
 
 import 'package:livelife/Controller/TabBarViewController.dart';
 import 'package:livelife/Models/gender.dart';
+import 'package:livelife/Models/user_model.dart';
+import 'package:livelife/Services/Exceptions/AuthExceptions.dart';
+import 'package:livelife/Services/auth_service.dart';
+import 'package:livelife/Utils/UtilFunctions.dart';
+import 'package:livelife/Views/CustomViews/CustomPopupView.dart';
 import 'package:livelife/Views/Screens/SignUPView.dart';
 
 class SignUPViewController extends StatefulWidget {
@@ -24,25 +30,68 @@ class _SignUPViewControllerState extends State<SignUPViewController> {
     String email = _emailController.text;
     String password = _passwordController.text;
     String age = _ageController.text;
-    Gender gender = _gender;
-    if (email.isNotEmpty &&
-        password.isNotEmpty &&
-        username.isNotEmpty &&
-        age.isNotEmpty) {
-      // Simülasyon: Kullanıcı bilgilerini kontrol edin
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => TabBarViewController(userId: "123")),
-      );
-      Fluttertoast.showToast(
-          msg: "Kayıt Başarılı! Ana sayfaya yönlendiriliyorsunuz.",
-          toastLength: Toast.LENGTH_SHORT);
-    } else {
-      // Eksik bilgi varsa kullanıcıyı uyar
-      Fluttertoast.showToast(
-          msg: "Lütfen tüm alanları doldurun!",
-          toastLength: Toast.LENGTH_SHORT);
+
+    try {
+      if (email.isNotEmpty && password.isNotEmpty && username.isNotEmpty) {
+        UserModel? newUser = await AuthService().signUp(
+          userName: username,
+          email: email,
+          password: password,
+          age: int.tryParse(age),
+          gender: _gender,
+        );
+
+        if (newUser != null) {
+          // Kullanıcı kayıt işlemi başarılı olduğunda
+          showCustomPopup(
+            context: context,
+            title: 'Başarılı!',
+            message: 'Kayıt işlemi başarılı! Ana sayfaya yönlendiriliyorsunuz.',
+            durationInSeconds: 1,
+            showCheckMark: true,
+            onPopupClose: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      TabBarViewController(userId: newUser.uid!),
+                ),
+              );
+            },
+          );
+        }
+      } else if (username.isEmpty) {
+        showCustomPopup(
+          context: context,
+          title: 'Hata!',
+          message: 'Kullanıcı adı boş bırakılamaz!',
+          durationInSeconds: 1,
+          showCheckMark: false,
+        );
+      } else if (email.isEmpty) {
+        showCustomPopup(
+          context: context,
+          title: 'Hata!',
+          message: 'E-posta boş bırakılamaz!',
+          durationInSeconds: 1,
+          showCheckMark: false,
+        );
+      } else if (password.isEmpty) {
+        showCustomPopup(
+          context: context,
+          title: 'Hata!',
+          message: 'Şifre boş bırakılamaz!',
+          durationInSeconds: 1,
+          showCheckMark: false,
+        );
+      }
+    } on AuthError catch (error) {
+      showCustomPopup(
+          context: context,
+          title: "Giriş Başarısız",
+          message: getErrorMessage(error),
+          durationInSeconds: 2,
+          showCheckMark: false);
     }
   }
 

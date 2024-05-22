@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:livelife/Controller/CustomPopupViewController.dart';
 import 'package:livelife/Controller/TabBarViewController.dart';
+import 'package:livelife/Models/user_model.dart';
+import 'package:livelife/Services/Exceptions/AuthExceptions.dart';
+import 'package:livelife/Services/auth_service.dart';
+import 'package:livelife/Utils/UtilFunctions.dart';
 import 'package:livelife/Views/Screens/LoginView.dart';
 import 'package:livelife/Views/Screens/HomeView.dart';
 
@@ -13,40 +18,47 @@ class _LoginViewControllerState extends State<LoginViewController> {
   final TextEditingController _passwordController = TextEditingController();
 
   void _login() async {
-    String email = _emailController.text;
-    String password = _passwordController.text;
+    String email = _emailController.text.trim();
+    String password = _passwordController.text.trim();
 
-    // Burada giriş işlemlerini gerçekleştir
-    // Bu örnek için basit bir kontrol yapalım
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-          builder: (context) => TabBarViewController(userId: "123")),
-          
-          
-    );
-    if (email == 'example@example.com' && password == 'password123') {
-      // Eğer giriş bilgileri doğruysa, Anasayfaya yönlendir
-     
-  
-    } else {
-      // Giriş bilgileri yanlışsa, bir hata mesajı göster
-      showDialog(
+    // if email and password is empty
+    if (email.isEmpty || password.isEmpty) {
+      showCustomPopup(
         context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Hata'),
-            content: Text('E-posta veya şifre yanlış!'),
-            actions: <Widget>[
-              TextButton(
-                child: Text('Tamam'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
+        title: 'Giriş Başarısız!',
+        message: 'Lütfen tüm alanları doldurun.',
+        durationInSeconds: 1,
+        showCheckMark: false,
+      );
+      return;
+    }
+
+    try {
+      UserModel? user =
+          await AuthService().signIn(email: email, password: password);
+      if (user != null) {
+        showCustomPopup(
+          context: context,
+          title: 'Giriş Başarılı!',
+          message: 'Ana sayfaya yönlendiriliyorsunuz.',
+          durationInSeconds: 1,
+          showCheckMark: true,
+          onPopupClose: () {
+            Navigator.of(context, rootNavigator: true).pushReplacement(
+              MaterialPageRoute(
+                  builder: (context) =>
+                      TabBarViewController(userId: user.uid!)),
+            );
+          },
+        );
+      }
+    } on AuthError catch (error) {
+      showCustomPopup(
+        context: context,
+        title: 'Giriş Başarısız!',
+        message: getErrorMessage(error),
+        durationInSeconds: 1,
+        showCheckMark: false,
       );
     }
   }

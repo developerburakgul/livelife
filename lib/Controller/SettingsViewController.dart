@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:livelife/Controller/SignUPViewController.dart';
 import 'package:livelife/Views/Screens/SettingsView.dart'; // SettingsView dosyasının doğru path'ini yazın
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -51,7 +52,10 @@ class _SettingsViewControllerState extends State<SettingsViewController> {
   }
 
   void navigateToSignUp(BuildContext context) {
-    Navigator.of(context, rootNavigator: true).pop();
+    Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => SignUPViewController()),
+      (Route<dynamic> route) => false,
+    );
   }
 
   Future<void> _pickImage() async {
@@ -104,4 +108,3 @@ class _SettingsViewControllerState extends State<SettingsViewController> {
     );
   }
 }
-
