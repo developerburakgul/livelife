@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:livelife/Models/task.dart';
+import 'package:livelife/Utils/Extensions/ColorExtensions.dart'; // ColorExtensions import edildi
 
 class TaskView extends StatefulWidget {
   final Task task;
@@ -52,10 +53,13 @@ class _TaskViewState extends State<TaskView> {
   @override
   Widget build(BuildContext context) {
     final dayFormatted = DateFormat('dd/MM/yyyy').format(widget.day);
+    final backgroundColor =
+        ColorExtensions.fromHex(widget.task.backgroundColor);
 
     return Card(
       margin: const EdgeInsets.all(8),
       child: ListTile(
+        tileColor: backgroundColor,
         leading: Checkbox(
           value: _isCompleted,
           onChanged: (bool? newValue) {

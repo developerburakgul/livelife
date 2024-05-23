@@ -1,62 +1,62 @@
 PODS:
   - cloud_firestore (4.16.1):
-    - Firebase/Firestore (= 10.22.0)
+    - Firebase/Firestore (= 10.25.0)
     - firebase_core
     - Flutter
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - Firebase/Auth (10.22.0):
+  - Firebase/Auth (10.25.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 10.22.0)
-  - Firebase/CoreOnly (10.22.0):
-    - FirebaseCore (= 10.22.0)
-  - Firebase/Firestore (10.22.0):
+    - FirebaseAuth (~> 10.25.0)
+  - Firebase/CoreOnly (10.25.0):
+    - FirebaseCore (= 10.25.0)
+  - Firebase/Firestore (10.25.0):
     - Firebase/CoreOnly
-    - FirebaseFirestore (~> 10.22.0)
+    - FirebaseFirestore (~> 10.25.0)
   - firebase_auth (4.19.1):
-    - Firebase/Auth (= 10.22.0)
+    - Firebase/Auth (= 10.25.0)
     - firebase_core
     - Flutter
-  - firebase_core (2.29.0):
-    - Firebase/CoreOnly (= 10.22.0)
+  - firebase_core (2.31.1):
+    - Firebase/CoreOnly (= 10.25.0)
     - Flutter
   - FirebaseAppCheckInterop (10.25.0)
-  - FirebaseAuth (10.22.0):
+  - FirebaseAuth (10.25.0):
     - FirebaseAppCheckInterop (~> 10.17)
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
     - GoogleUtilities/Environment (~> 7.8)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
     - RecaptchaInterop (~> 100.0)
-  - FirebaseCore (10.22.0):
+  - FirebaseCore (10.25.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.12)
     - GoogleUtilities/Logger (~> 7.12)
-  - FirebaseCoreExtension (10.22.0):
+  - FirebaseCoreExtension (10.25.0):
     - FirebaseCore (~> 10.0)
   - FirebaseCoreInternal (10.25.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseFirestore (10.22.0):
-    - FirebaseFirestoreBinary (= 10.22.0)
-  - FirebaseFirestoreAbseilBinary (1.2022062300.0)
-  - FirebaseFirestoreBinary (10.22.0):
-    - FirebaseCore (= 10.22.0)
-    - FirebaseCoreExtension (= 10.22.0)
-    - FirebaseFirestoreInternalBinary (= 10.22.0)
-    - FirebaseSharedSwift (= 10.22.0)
-  - FirebaseFirestoreGRPCBoringSSLBinary (1.49.1)
-  - FirebaseFirestoreGRPCCoreBinary (1.49.1):
-    - FirebaseFirestoreAbseilBinary (= 1.2022062300.0)
-    - FirebaseFirestoreGRPCBoringSSLBinary (= 1.49.1)
-  - FirebaseFirestoreGRPCCPPBinary (1.49.1):
-    - FirebaseFirestoreAbseilBinary (= 1.2022062300.0)
-    - FirebaseFirestoreGRPCCoreBinary (= 1.49.1)
-  - FirebaseFirestoreInternalBinary (10.22.0):
-    - FirebaseCore (= 10.22.0)
-    - FirebaseFirestoreAbseilBinary (= 1.2022062300.0)
-    - FirebaseFirestoreGRPCCPPBinary (= 1.49.1)
+  - FirebaseFirestore (10.25.0):
+    - FirebaseFirestoreBinary (= 10.25.0)
+  - FirebaseFirestoreAbseilBinary (1.2024011601.0)
+  - FirebaseFirestoreBinary (10.25.0):
+    - FirebaseCore (= 10.25.0)
+    - FirebaseCoreExtension (= 10.25.0)
+    - FirebaseFirestoreInternalBinary (= 10.25.0)
+    - FirebaseSharedSwift (= 10.25.0)
+  - FirebaseFirestoreGRPCBoringSSLBinary (1.62.1)
+  - FirebaseFirestoreGRPCCoreBinary (1.62.1):
+    - FirebaseFirestoreAbseilBinary (= 1.2024011601.0)
+    - FirebaseFirestoreGRPCBoringSSLBinary (= 1.62.1)
+  - FirebaseFirestoreGRPCCPPBinary (1.62.1):
+    - FirebaseFirestoreAbseilBinary (= 1.2024011601.0)
+    - FirebaseFirestoreGRPCCoreBinary (= 1.62.1)
+  - FirebaseFirestoreInternalBinary (10.25.0):
+    - FirebaseCore (= 10.25.0)
+    - FirebaseFirestoreAbseilBinary (= 1.2024011601.0)
+    - FirebaseFirestoreGRPCCPPBinary (= 1.62.1)
     - leveldb-library (~> 1.22)
     - nanopb (< 2.30911.0, >= 2.30908.0)
-  - FirebaseSharedSwift (10.22.0)
+  - FirebaseSharedSwift (10.25.0)
   - Flutter (1.0.0)
   - fluttertoast (0.0.2):
     - Flutter
@@ -103,7 +103,7 @@ DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
-  - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `10.22.0`)
+  - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `10.25.0`)
   - Flutter (from `Flutter`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
@@ -141,7 +141,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_core/ios"
   FirebaseFirestore:
     :git: https://github.com/invertase/firestore-ios-sdk-frameworks.git
-    :tag: 10.22.0
+    :tag: 10.25.0
   Flutter:
     :path: Flutter
   fluttertoast:
@@ -154,26 +154,26 @@ EXTERNAL SOURCES:
 CHECKOUT OPTIONS:
   FirebaseFirestore:
     :git: https://github.com/invertase/firestore-ios-sdk-frameworks.git
-    :tag: 10.22.0
+    :tag: 10.25.0
 
 SPEC CHECKSUMS:
-  cloud_firestore: 16ad850949e9c68ac1d99e883adaaba9b9fc955c
-  Firebase: 797fd7297b7e1be954432743a0b3f90038e45a71
-  firebase_auth: 35e39b82fa6703db53401e2d8708341597edc7be
-  firebase_core: aaadbddb3cb2ee3792b9804f9dbb63e5f6f7b55c
+  cloud_firestore: d93bb3cdd1dee05f46de34516a8c1c4a66157919
+  Firebase: 0312a2352584f782ea56f66d91606891d4607f06
+  firebase_auth: d8736ce759b2e5d2496afea186c338f265592fe9
+  firebase_core: 22e117a2e0dec3cb318c8f53f2dd01c140375617
   FirebaseAppCheckInterop: 5da5ce93e8797a215e3f677fb0654b74e736c8b8
-  FirebaseAuth: bbe4c68f958504ba9e54aee181adbdf5b664fbc6
-  FirebaseCore: 0326ec9b05fbed8f8716cddbf0e36894a13837f7
-  FirebaseCoreExtension: 6394c00b887d0bebadbc7049c464aa0cbddc5d41
+  FirebaseAuth: c0f93dcc570c9da2bffb576969d793e95c344fbb
+  FirebaseCore: 7ec4d0484817f12c3373955bc87762d96842d483
+  FirebaseCoreExtension: 8a47811d0b155501559ef05d089518152a0a1677
   FirebaseCoreInternal: 910a81992c33715fec9263ca7381d59ab3a750b7
-  FirebaseFirestore: 6a8bd88aedb9def0411f53e03b564278685fed93
-  FirebaseFirestoreAbseilBinary: fc2004a2da6b5978e974ca49c2e463f5e542a78f
-  FirebaseFirestoreBinary: c59e4adb329348a5a2479614f718c5b4f7429d5b
-  FirebaseFirestoreGRPCBoringSSLBinary: 85a615c0b7e97173d6af581c9879baac663d9743
-  FirebaseFirestoreGRPCCoreBinary: bf6ed68cea8ad7b24ba091b53374e91a5211a91f
-  FirebaseFirestoreGRPCCPPBinary: cff111ba3ae5bea45a6562e8bd8750d4a7e2ebc6
-  FirebaseFirestoreInternalBinary: 5f38434cc9b36a6897a616a14e85d00c890c5634
-  FirebaseSharedSwift: 48076404e6e52372290d15a07d2ed1d2f1754023
+  FirebaseFirestore: d30223cc084fb1ea2d7aee742eea5392beaf3edd
+  FirebaseFirestoreAbseilBinary: bd0451946879e0e01327c8efc35896bb273009c4
+  FirebaseFirestoreBinary: bfcacce21af5109ab56bef3d41b4235b98b22861
+  FirebaseFirestoreGRPCBoringSSLBinary: c3007e61593e4583ec3bb8b34ce654663663b690
+  FirebaseFirestoreGRPCCoreBinary: 1243fc6604a52912694635f891916976924931ed
+  FirebaseFirestoreGRPCCPPBinary: e447b3a7c060c0abfc4e2c9f6fb53bf7635ded66
+  FirebaseFirestoreInternalBinary: 64bdfce9f9f44f131e47694b6287fce0f6f26019
+  FirebaseSharedSwift: 0274086954b1b2d5fd7e829eccc587044d72a4ba
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   fluttertoast: 31b00dabfa7fb7bacd9e7dbee580d7a2ff4bf265
   GoogleUtilities: ea963c370a38a8069cc5f7ba4ca849a60b6d7d15
@@ -186,6 +186,6 @@ SPEC CHECKSUMS:
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   Toast: 1f5ea13423a1e6674c4abdac5be53587ae481c4e
 
-PODFILE CHECKSUM: 896f86fec56c2d06819b39acfe8db7d2176c9f81
+PODFILE CHECKSUM: e48188daeb80dd6209809247c31120e473e10c40
 
 COCOAPODS: 1.15.2

@@ -5,12 +5,14 @@ class Task {
   DateTime endDate;
   List<bool>
       completionStatus; // Her gün için görevin tamamlanma durumunu tutan liste
+  String backgroundColor; // Arka plan rengi için yeni özellik
 
   Task({
     required this.name,
     required this.description,
     required this.startDate,
     required this.endDate,
+    this.backgroundColor = "#FFFFFF", // Varsayılan beyaz renk
     List<bool>? completionStatus,
   }) : completionStatus = completionStatus ??
             List.generate(
@@ -25,6 +27,7 @@ class Task {
       'startDate': startDate.toIso8601String(),
       'endDate': endDate.toIso8601String(),
       'completionStatus': completionStatus,
+      'backgroundColor': backgroundColor, // Yeni özellik ekleniyor
     };
   }
 
@@ -35,6 +38,7 @@ class Task {
       description: data['description'],
       startDate: DateTime.parse(data['startDate']),
       endDate: DateTime.parse(data['endDate']),
+      backgroundColor: data['backgroundColor'] ?? "#FFFFFF",
       completionStatus: List<bool>.from(data['completionStatus']),
     );
   }

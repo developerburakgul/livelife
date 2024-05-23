@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:livelife/Models/user_model.dart';
 import 'package:livelife/Models/task.dart';
+import 'package:livelife/Services/Exceptions/TaskException.dart';
 
 class TaskService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -21,12 +22,20 @@ class TaskService {
 
         // Güncellenmiş kullanıcıyı Firestore'a kaydet
         await userDoc.update(user.toFirestore());
-        print("Task başarıyla kullanıcıya eklendi.");
       } else {
-        print("Kullanıcı bulunamadı.");
+        throw TaskException.userNotFound;
+      }
+    } on FirebaseException catch (e) {
+      switch (e.code) {
+        case 'permission-denied':
+          throw TaskException.permissionDenied;
+        case 'not-found':
+          throw TaskException.userNotFound;
+        default:
+          throw TaskException.firestoreError;
       }
     } catch (e) {
-      print("Bir hata oluştu: $e");
+      throw TaskException.unknownError;
     }
   }
 
@@ -43,19 +52,38 @@ class TaskService {
 
         // Tarihe uygun task'ları filtrele
         tasksOnDate = user.tasks.where((task) {
-          return date.isAfter(task.startDate) &&
-              date.isBefore(task.endDate.add(Duration(days: 1)));
+          // Tarihlerin saat, dakika ve saniyelerini sıfırlayarak karşılaştırma yap
+          DateTime taskStartDate = DateTime(
+              task.startDate.year, task.startDate.month, task.startDate.day);
+          DateTime taskEndDate =
+              DateTime(task.endDate.year, task.endDate.month, task.endDate.day)
+                  .add(Duration(days: 1))
+                  .subtract(Duration(seconds: 1));
+          DateTime selectedDate = DateTime(date.year, date.month, date.day);
+
+          return selectedDate
+                  .isAfter(taskStartDate.subtract(Duration(seconds: 1))) &&
+              selectedDate.isBefore(taskEndDate.add(Duration(seconds: 1)));
         }).toList();
 
         print("Belirli tarihte ${tasksOnDate.length} adet task bulundu.");
-        
       } else {
-        print("Kullanıcı bulunamadı.");
+        throw TaskException.userNotFound;
+      }
+    } on FirebaseException catch (e) {
+      switch (e.code) {
+        case 'permission-denied':
+          throw TaskException.permissionDenied;
+        case 'not-found':
+          throw TaskException.userNotFound;
+        default:
+          throw TaskException.firestoreError;
       }
     } catch (e) {
-      print("Bir hata oluştu: $e");
+      throw TaskException.unknownError;
     }
 
     return tasksOnDate;
   }
 }
+

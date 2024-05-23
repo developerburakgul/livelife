@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:livelife/Controller/HomeViewController.dart';
 import 'package:livelife/Controller/SettingsViewController.dart';
