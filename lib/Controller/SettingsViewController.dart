@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:livelife/Controller/SignUPViewController.dart';
+import 'package:livelife/Services/StorageService.dart';
+import 'package:livelife/Services/UserService.dart';
 import 'package:livelife/Views/Screens/SettingsView.dart'; // SettingsView dosyasının doğru path'ini yazın
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:livelife/Models/user_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SettingsViewController extends StatefulWidget {
   final String userId;
@@ -18,16 +22,20 @@ class _SettingsViewControllerState extends State<SettingsViewController> {
   bool isSwitchedTheme = false;
   bool isSwitchedNotifications = false;
   File? _profileImage;
+  UserModel? _userModel;
+  String? _profileImageUrl;
 
   final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _genderController = TextEditingController();
   final _ageController = TextEditingController();
+  final StorageService _storageService = StorageService();
+  final UserService _userService = UserService();
 
   @override
   void initState() {
     super.initState();
-    print("Kullanıcı ID: ${widget.userId}");
+    _loadUserData();
   }
 
   @override
@@ -67,10 +75,10 @@ class _SettingsViewControllerState extends State<SettingsViewController> {
         setState(() {
           _profileImage = File(pickedFile.path);
         });
+        await _uploadProfileImage();
       }
     } catch (e) {
       print("Image picker error: $e");
-      // iOS specific error handling
       if (Platform.isIOS) {
         showDialog(
           context: context,
@@ -91,6 +99,34 @@ class _SettingsViewControllerState extends State<SettingsViewController> {
     }
   }
 
+  Future<void> _uploadProfileImage() async {
+    if (_profileImage != null && _userModel != null) {
+      String? imageUrl = await _storageService.uploadProfileImage(
+          widget.userId, _userModel!.userName, _profileImage!);
+      if (imageUrl != null) {
+        setState(() {
+          _profileImageUrl = imageUrl;
+          _userModel!.profileImageUrl = imageUrl;
+        });
+        await _userService.updateUserProfileImage(widget.userId, imageUrl);
+      }
+    }
+  }
+
+  Future<void> _loadUserData() async {
+    UserModel? userData = await _userService.loadUserData(widget.userId);
+    if (userData != null) {
+      setState(() {
+        _userModel = userData;
+        _usernameController.text = _userModel!.userName;
+        _emailController.text = _userModel!.email;
+        _genderController.text = _userModel!.gender?.name ?? '';
+        _ageController.text = _userModel!.age?.toString() ?? '';
+        _profileImageUrl = _userModel!.profileImageUrl;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SettingsView(
@@ -105,6 +141,9 @@ class _SettingsViewControllerState extends State<SettingsViewController> {
       onLogoutPressed: () => navigateToSignUp(context),
       onProfileImagePressed: _pickImage,
       profileImage: _profileImage,
+      profileImageUrl: _profileImageUrl,
     );
   }
 }
+
+

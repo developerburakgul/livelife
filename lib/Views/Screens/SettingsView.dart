@@ -13,6 +13,7 @@ class SettingsView extends StatelessWidget {
   final VoidCallback onLogoutPressed;
   final VoidCallback onProfileImagePressed;
   final File? profileImage;
+  final String? profileImageUrl; // Yeni parametre
 
   const SettingsView({
     Key? key,
@@ -27,6 +28,7 @@ class SettingsView extends StatelessWidget {
     required this.onLogoutPressed,
     required this.onProfileImagePressed,
     required this.profileImage,
+    this.profileImageUrl, // Yeni parametre
   }) : super(key: key);
 
   @override
@@ -45,8 +47,14 @@ class SettingsView extends StatelessWidget {
                 onTap: onProfileImagePressed,
                 child: CircleAvatar(
                   radius: 50,
-                  backgroundImage: profileImage != null ? FileImage(profileImage!) : null,
-                  child: profileImage == null ? Icon(Icons.person, size: 50) : null,
+                  backgroundImage: profileImage != null
+                      ? FileImage(profileImage!)
+                      : (profileImageUrl != null
+                          ? NetworkImage(profileImageUrl!)
+                          : null) as ImageProvider?,
+                  child: profileImage == null && profileImageUrl == null
+                      ? Icon(Icons.person, size: 50)
+                      : null,
                 ),
               ),
               Padding(
@@ -128,3 +136,4 @@ class SettingsView extends StatelessWidget {
     );
   }
 }
+

@@ -8,7 +8,7 @@ class ColorPickerDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color pickerColor = Colors.blue; // Varsayılan renk
+    Color pickerColor = Colors.white; // Varsayılan renk
 
     return AlertDialog(
       title: Text('PickColor'),

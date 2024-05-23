@@ -4,9 +4,11 @@ import 'package:livelife/Models/gender.dart';
 import 'package:livelife/Models/user_model.dart';
 import 'package:livelife/Services/Exceptions/AuthExceptions.dart';
 
+
 class AuthService {
   final userCollection = FirebaseFirestore.instance.collection('users');
   final firebaseAuth = FirebaseAuth.instance;
+  
 
   Future<UserModel?> signUp({
     required String userName,

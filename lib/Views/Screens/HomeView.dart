@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:livelife/Models/task.dart';
+import 'package:livelife/Views/CustomViews/QuoteView.dart';
 import 'package:livelife/Views/CustomViews/TaskView.dart';
 import 'package:table_calendar/table_calendar.dart';
+
 
 class HomeView extends StatelessWidget {
   final CalendarFormat calendarFormat;
@@ -14,6 +16,8 @@ class HomeView extends StatelessWidget {
   final Function(Task) onEditTask;
   final Function(Task) onDeleteTask;
   final Function() onAddHabit;
+  final String quote;
+  final String author;
 
   HomeView({
     required this.calendarFormat,
@@ -26,6 +30,8 @@ class HomeView extends StatelessWidget {
     required this.onEditTask,
     required this.onDeleteTask,
     required this.onAddHabit,
+    required this.quote,
+    required this.author,
   });
 
   @override
@@ -66,6 +72,10 @@ class HomeView extends StatelessWidget {
             ),
             onPressed: () => toggleCalendarView(),
           ),
+          QuoteView(
+            quote: quote,
+            author: author,
+          ),
           if (tasks != null && selectedDay != null)
             for (Task task in tasks!)
               TaskView(
@@ -84,3 +94,4 @@ class HomeView extends StatelessWidget {
     );
   }
 }
+

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:livelife/Controller/HabitCreateViewController.dart';
+import 'package:livelife/Models/Quote.dart';
 import 'package:livelife/Models/task.dart';
+import 'package:livelife/Services/QuoteService.dart';
 import 'package:livelife/Services/task_service.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:livelife/Views/Screens/HomeView.dart';
 import 'package:livelife/Views/Screens/HabitCreateView.dart'; // AddHabitPage import edildi
+import 'dart:async';
 
 class HomeViewController extends StatefulWidget {
   final String userId;
@@ -21,12 +24,39 @@ class _HomeViewControllerState extends State<HomeViewController> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   List<Task>? tasks;
+  Quote quote = Quote(quote: "quote", author: "author");
+  final QuoteService quoteService = QuoteService();
+  Timer? _timer; // Timer nesnesi
 
   @override
   void initState() {
     super.initState();
     _selectedDay = _focusedDay;
     getTaskData(_focusedDay);
+    fetchQuote();
+
+    // Timer'ı belirli aralıklarla fetchQuote fonksiyonunu çağıracak şekilde başlat
+    _timer = Timer.periodic(Duration(minutes: 60), (timer) {
+      fetchQuote();
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel(); // Widget yok edildiğinde Timer'ı iptal et
+    super.dispose();
+  }
+
+  void fetchQuote() async {
+    try {
+      var fetchedQuote = await quoteService.fetchRandomQuote();
+
+      setState(() {
+        quote = fetchedQuote;
+      });
+    } catch (e) {
+      print("Failed to fetch quote: $e");
+    }
   }
 
   void toggleCalendarView() {
@@ -95,6 +125,8 @@ class _HomeViewControllerState extends State<HomeViewController> {
       onEditTask: editTask,
       onDeleteTask: deleteTask,
       onAddHabit: addHabit,
+      quote: quote.quote,
+      author: quote.author,
     );
   }
 }
