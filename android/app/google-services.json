@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "75396238674",
+    "project_id": "livelifeapplicaton",
+    "storage_bucket": "livelifeapplicaton.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:75396238674:android:bb8fa119c9ba427920fe8b",
+        "android_client_info": {
+          "package_name": "com.example.livelife"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRh4ifSygzbv8aW3MfasQlN5c1RCjxgPE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
