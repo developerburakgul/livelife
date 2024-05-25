@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:livelife/Controller/SignUPViewController.dart';
 import 'package:livelife/Views/Screens/IntroView.dart';
-import 'package:livelife/Views/Screens/SignUPView.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroViewController extends StatefulWidget {
@@ -22,8 +21,17 @@ class _IntroViewControllerState extends State<IntroViewController> {
 
   void _checkIntroStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    _showIntro = prefs.getBool('showIntro') ?? true;
-    setState(() {});
+    bool showIntro = prefs.getBool('showIntro') ?? true;
+    if (!showIntro) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => SignUPViewController()),
+      );
+    } else {
+      setState(() {
+        _showIntro = showIntro;
+      });
+    }
   }
 
   void _saveIntroStatus(bool value) async {
@@ -38,13 +46,11 @@ class _IntroViewControllerState extends State<IntroViewController> {
   }
 
   void onStartPressed() {
-    _saveIntroStatus(_showIntro);
+    _saveIntroStatus(!_showIntro); // Save the inverse of showIntro
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => SignUPViewController()),
     );
-  
-
   }
 
   void onShowIntroChanged(bool? value) {

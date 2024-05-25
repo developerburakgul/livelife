@@ -59,6 +59,7 @@ class _TaskViewState extends State<TaskView> {
     return Card(
       margin: const EdgeInsets.all(8),
       child: ListTile(
+        shape: StadiumBorder(),
         tileColor: backgroundColor,
         leading: Checkbox(
           value: _isCompleted,

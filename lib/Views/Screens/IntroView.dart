@@ -43,13 +43,18 @@ class IntroView extends StatelessWidget {
             children: _pages,
             onPageChanged: onPageChanged,
           ),
-          if (currentPage == _pages.length - 1)
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: _buildStartButton(),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Column(
+              children: [
+                _buildPageIndicator(),
+                if (currentPage == _pages.length - 1)
+                  _buildStartButton(),
+              ],
             ),
+          ),
         ],
       ),
     );
@@ -81,8 +86,24 @@ class IntroView extends StatelessWidget {
     );
   }
 
-  static Widget _buildPage(
-      {required String title, required String description}) {
+  Widget _buildPageIndicator() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(_pages.length, (index) {
+        return Container(
+          margin: EdgeInsets.symmetric(horizontal: 4),
+          width: currentPage == index ? 12 : 8,
+          height: currentPage == index ? 12 : 8,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: currentPage == index ? Colors.blue : Colors.grey,
+          ),
+        );
+      }),
+    );
+  }
+
+  static Widget _buildPage({required String title, required String description}) {
     return Container(
       padding: EdgeInsets.all(24),
       child: Column(
@@ -104,4 +125,3 @@ class IntroView extends StatelessWidget {
     );
   }
 }
-
