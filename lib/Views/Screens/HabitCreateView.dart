@@ -81,16 +81,14 @@ class HabitCreateView extends StatelessWidget {
                   ElevatedButton(
                     onPressed: onCancel,
                     child: Text('Vazgeç'),
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            Theme.of(context).colorScheme.secondary),
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
                   ),
                   ElevatedButton(
                     onPressed: onSave,
                     child: Text('Oluştur'),
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            Theme.of(context).colorScheme.secondary),
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
                   ),
                 ],
               ),

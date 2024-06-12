@@ -38,8 +38,8 @@ class HabitEditView extends StatelessWidget {
         ),
         title: Text('Yeni Alışkanlık Oluştur'),
       ),
-body: SafeArea(
-  child: SingleChildScrollView(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(16.0),
             child: Column(
@@ -87,10 +87,14 @@ body: SafeArea(
                     ElevatedButton(
                       onPressed: onCancel,
                       child: Text('Vazgeç'),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white),
                     ),
                     ElevatedButton(
                       onPressed: onSave,
                       child: Text('Kaydet'),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white),
                     ),
                   ],
                 ),
@@ -98,7 +102,7 @@ body: SafeArea(
             ),
           ),
         ),
-),
+      ),
     );
   }
 }
