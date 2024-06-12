@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:livelife/Controller/SignUPViewController.dart';
-import 'package:livelife/Views/Screens/IntroView.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:livelife/Views/Screens/IntroView.dart';
 
 class IntroViewController extends StatefulWidget {
   @override

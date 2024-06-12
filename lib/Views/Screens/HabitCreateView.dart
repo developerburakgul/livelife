@@ -37,60 +37,67 @@ class HabitCreateView extends StatelessWidget {
         ),
         title: Text('Yeni Alışkanlık Oluştur'),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            TextField(
-              controller: nameController,
-              decoration: InputDecoration(labelText: 'Alışkanlık adı...'),
-            ),
-            TextField(
-              controller: descriptionController, // Description TextField
-              decoration: InputDecoration(labelText: 'Açıklama...'),
-              maxLines: 3,
-            ),
-            ListTile(
-              title: Text(
-                  'Başlangıç tarihi: ${DateFormat('dd/MM/yy').format(startDate)}'),
-              trailing: Icon(Icons.calendar_today),
-              onTap: () => selectDate(true),
-            ),
-            ListTile(
-              title: Text(
-                  'Bitiş tarihi: ${DateFormat('dd/MM/yy').format(endDate)}'),
-              trailing: Icon(Icons.calendar_today),
-              onTap: () => selectDate(false),
-            ),
-            ListTile(
-              title: Text('Anımsat: ${reminderTime.format(context)}'),
-              trailing: Icon(Icons.access_time),
-              onTap: selectTime,
-            ),
-            ListTile(
-              title: Text("Arkaplan Seç"),
-              trailing: Icon(Icons.color_lens),
-              onTap: selectBackground,
-            ),
-            SizedBox(height: 16.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                ElevatedButton(
-                  onPressed: onCancel,
-                  child: Text('Vazgeç'),
-                ),
-                ElevatedButton(
-                  onPressed: onSave,
-                  child: Text('Oluştur'),
-                ),
-              ],
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              TextField(
+                controller: nameController,
+                decoration: InputDecoration(labelText: 'Alışkanlık adı...'),
+              ),
+              TextField(
+                controller: descriptionController, // Description TextField
+                decoration: InputDecoration(labelText: 'Açıklama...'),
+                maxLines: 3,
+              ),
+              ListTile(
+                title: Text(
+                    'Başlangıç tarihi: ${DateFormat('dd/MM/yy').format(startDate)}'),
+                trailing: Icon(Icons.calendar_today),
+                onTap: () => selectDate(true),
+              ),
+              ListTile(
+                title: Text(
+                    'Bitiş tarihi: ${DateFormat('dd/MM/yy').format(endDate)}'),
+                trailing: Icon(Icons.calendar_today),
+                onTap: () => selectDate(false),
+              ),
+              ListTile(
+                title: Text('Anımsat: ${reminderTime.format(context)}'),
+                trailing: Icon(Icons.access_time),
+                onTap: selectTime,
+              ),
+              ListTile(
+                title: Text("Arkaplan Seç"),
+                trailing: Icon(Icons.color_lens),
+                onTap: selectBackground,
+              ),
+              SizedBox(height: 16.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  ElevatedButton(
+                    onPressed: onCancel,
+                    child: Text('Vazgeç'),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondary),
+                  ),
+                  ElevatedButton(
+                    onPressed: onSave,
+                    child: Text('Oluştur'),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondary),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-

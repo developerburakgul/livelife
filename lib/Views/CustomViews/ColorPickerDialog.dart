@@ -11,7 +11,7 @@ class ColorPickerDialog extends StatelessWidget {
     Color pickerColor = Colors.white; // Varsayılan renk
 
     return AlertDialog(
-      title: Text('PickColor'),
+      title: Text('Renk Seçiniz'),
       content: SingleChildScrollView(
         child: BlockPicker(
           pickerColor: pickerColor,
@@ -22,7 +22,7 @@ class ColorPickerDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         TextButton(
-          child: Text('SEÇ'),
+          child: Text('Seç'),
           onPressed: () {
             onColorSelected(pickerColor);
             Navigator.of(context).pop();

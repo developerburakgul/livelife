@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:livelife/Controller/ThemeController.dart';
+import 'package:provider/provider.dart';
+import 'package:livelife/themes/dark_theme.dart';
+import 'package:livelife/themes/light_theme.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   final int selectedIndex;
@@ -25,7 +29,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
         ),
       ],
       currentIndex: selectedIndex,
-      selectedItemColor: Colors.blue,
+      selectedItemColor: Theme.of(context).colorScheme.primary,
       onTap: onItemTapped,
     );
   }

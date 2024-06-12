@@ -4,7 +4,6 @@ import 'package:livelife/Views/CustomViews/QuoteView.dart';
 import 'package:livelife/Views/CustomViews/TaskView.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-
 class HomeView extends StatelessWidget {
   final CalendarFormat calendarFormat;
   final DateTime focusedDay;
@@ -55,7 +54,8 @@ class HomeView extends StatelessWidget {
               this.onDaySelected(focusedDay, focusedDay);
             },
             daysOfWeekStyle: DaysOfWeekStyle(
-              weekendStyle: TextStyle().copyWith(color: Colors.blue[600]),
+              weekendStyle: TextStyle()
+                  .copyWith(color: Theme.of(context).colorScheme.tertiary),
             ),
             headerStyle: const HeaderStyle(
               titleCentered: true,
@@ -89,9 +89,8 @@ class HomeView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: onAddHabit,
         child: Icon(Icons.add),
-        backgroundColor: Colors.blue,
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
     );
   }
 }
-

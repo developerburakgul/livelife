@@ -145,5 +145,3 @@ class _SettingsViewControllerState extends State<SettingsViewController> {
     );
   }
 }
-
-

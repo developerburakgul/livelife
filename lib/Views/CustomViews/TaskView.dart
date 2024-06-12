@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:livelife/Models/task.dart';
-import 'package:livelife/Utils/Extensions/ColorExtensions.dart'; // ColorExtensions import edildi
+import 'package:livelife/Utils/Extensions/ColorExtensions.dart';
+import 'package:livelife/Views/Screens/HabitEditView.dart'; // ColorExtensions import edildi
 
 class TaskView extends StatefulWidget {
   final Task task;
@@ -57,6 +58,7 @@ class _TaskViewState extends State<TaskView> {
         ColorExtensions.fromHex(widget.task.backgroundColor);
 
     return Card(
+      shape: StadiumBorder(),
       margin: const EdgeInsets.all(8),
       child: ListTile(
         shape: StadiumBorder(),
@@ -76,14 +78,27 @@ class _TaskViewState extends State<TaskView> {
               value: 0,
               child: ListTile(
                 leading: Icon(Icons.edit),
-                title: Text('Edit'),
+                title: OutlinedButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Düzenle',
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary),
+                  ),
+                ),
               ),
             ),
             PopupMenuItem<int>(
               value: 1,
               child: ListTile(
                 leading: Icon(Icons.delete),
-                title: Text('Delete'),
+                title: OutlinedButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Sil',
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary),
+                    )),
               ),
             ),
           ],
