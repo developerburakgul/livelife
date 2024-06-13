@@ -48,6 +48,9 @@
 
 [İzlemek İçin Tıklayınız ](https://youtu.be/2wzgKpkpuxM)
 
+[İzlemek İçin Tıklayınız ](https://www.linkedin.com/feed/update/urn:li:activity:7207018271714295809/)
+
+
 ## Uygulama Hakkında Detaylar
 
 <div align="center">
