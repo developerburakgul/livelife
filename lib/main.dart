@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:livelife/Controller/IntroViewController.dart';
@@ -8,6 +9,8 @@ import 'Controller/ThemeController.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(); // Firebase başlatılıyor
+  final fcmToken = await FirebaseMessaging.instance.getToken();
+  print('FCM Token: $fcmToken');
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeController(),

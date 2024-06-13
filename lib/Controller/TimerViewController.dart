@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:livelife/Views/Screens/TimerView.dart ';  // Make sure this import points to the correct path
+import 'package:livelife/Views/Screens/TimerView.dart';
+
+
 
 class TimerViewController extends StatefulWidget {
   TimerViewController({Key? key}) : super(key: key);
