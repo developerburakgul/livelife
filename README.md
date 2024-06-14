@@ -46,12 +46,11 @@
 
 ## Uygulama Tanıtım Videosu
 
-[Tanıtım videosu]          // Title
+[V1.0 İzlemek İçin Tıklayınız ](https://youtu.be/2wzgKpkpuxM)
 
-(https://youtu.be/L-QEV3QsPI8?si=W3pfdTg10Clck-M6)    // Video Link
-[İzlemek İçin Tıklayınız ](https://youtu.be/2wzgKpkpuxM)
+[V2.0](https://github.com/developerburakgul/livelife/assets/120260143/5c35fcf8-4a57-4b92-a45e-0b3798d1fd76)
 
-[İzlemek İçin Tıklayınız ](https://www.linkedin.com/feed/update/urn:li:activity:7207018271714295809/)
+
 
 
 ## Uygulama Hakkında Detaylar
