@@ -46,6 +46,9 @@
 
 ## Uygulama Tanıtım Videosu
 
+[Tanıtım videosu]          // Title
+
+(https://youtu.be/L-QEV3QsPI8?si=W3pfdTg10Clck-M6)    // Video Link
 [İzlemek İçin Tıklayınız ](https://youtu.be/2wzgKpkpuxM)
 
 [İzlemek İçin Tıklayınız ](https://www.linkedin.com/feed/update/urn:li:activity:7207018271714295809/)
