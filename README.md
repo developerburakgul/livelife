@@ -46,10 +46,10 @@
 
 ## Uygulama Tanıtım Videosu
 
-[V1.0 İzlemek İçin Tıklayınız ](https://youtu.be/2wzgKpkpuxM)
 
-[V2.0](https://github.com/developerburakgul/livelife/assets/120260143/5c35fcf8-4a57-4b92-a45e-0b3798d1fd76)
+[V1.0](https://github.com/developerburakgul/livelife/assets/120260143/9aa48385-26a2-496b-8544-2197f4c95865)
 
+[V2.0](https://github.com/developerburakgul/livelife/assets/120260143/e40e2056-f453-406b-ab5a-7c9571602949)
 
 
 
